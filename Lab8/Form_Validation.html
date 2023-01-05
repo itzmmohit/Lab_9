@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style type="text/css">
+        section
+        {
+            width: 500px;
+            height: 300px;
+            margin: 40px auto;
+        }
+        div{
+            width: 100%;
+            margin: 15px auto;
+        }
+        label{
+            color: aliceblue;
+            display: block;
+            padding:20px;
+            font-size: 25px;
+        }
+        input{
+            width: 96%;
+            padding: 10px;
+            border: 1px red;
+            margin-left: 20px;
+            border-radius: 3px;
+        }
+        span
+        {
+            display: block;
+            margin-left: 20px;
+            color: red;
+            font-style: italic;
+        }
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body style="background-image: url('User_bg.jpg'); background-size: 1800px;">
+   <section>
+        <h1 style="color: BROWN;">Welcome to this World!!!</h1>
+       <form action="">
+           <div>
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="First-Name">
+                <span id="btext"></span>
+           </div>
+           <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Last-Name">
+                <span ></span>
+           </div>
+           <div>
+                <label for="number">Phone-Number</label>
+                <input type="tel" id="number" placeholder="Phone-Number">
+                <span></span>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email-id">
+                <span></span>
+            </div>
+            <div>
+                <label for="pass">Password</label>
+                <input type="password" id="pass" value="">
+                
+                <span ></span>
+            </div>
+            <div>
+                <label for="cpass">Confirm Password</label>
+                <input type="password" id="cpass" value="">   
+                <span></span>
+            </div>
+            <div align="center" style="padding-bottom: 10px;">
+                <button type = "submit" value = "Submit">Submit</button>
+                <button type = "reset" value = "Reset" >Reset</button>
+            </div>           
+       </form>
+   </section> 
+</body>
+</html>
+<script>
+    var fname=document.getElementById('fname');
+    var lname=document.getElementById('lname');
+    var number=document.getElementById('number');
+    var email=document.getElementById('email');
+    var pass=document.getElementById('pass');
+    var cpass=document.getElementById('cpass');
+    var span=document.getElementsByTagName('span');
+    
+    fname.onkeydown=function()
+    {
+        const regnum= /^[A-Za-z]{1,10}$/;
+        if(regnum.test(fname.value))
+        {
+          span[0].innerText="Your Name is Valid";
+          span[0].style.color="lime";  
+        }
+        else
+        {
+           span[0].innerText="Invalid";
+           span[0].style.color="red";
+        }   
+    }
+
+    lname.onkeydown=function()
+    {
+        const regnum= /^[A-Za-z]{1,10}$/;
+        if(regnum.test(lname.value))
+        {
+          span[1].innerText="Your Name is Valid";
+          span[1].style.color="lime";  
+        }
+        else
+        {
+           span[1].innerText="Invalid";
+           span[1].style.color="red";
+        }   
+    }
+
+    number.onkeydown=function()
+    {
+        const regnum= /^[0-9]{10}$/;
+        if(regnum.test(number.value))
+        {
+          span[2].innerText="Your Number is Valid";
+          span[2].style.color="lime";  
+        }
+        else
+        {
+           span[2].innerText="Invalid Phone Number";
+           span[2].style.color="red";
+        }   
+    }
+    
+    email.onkeydown=function()
+    {
+       const regex1=/^([a-z0-9\.-]+)@([a-z0-9]+)\.([a-z]{1,8})$/;
+       const regex2= /^([a-z0-9\.-]+)@([a-z0-9]+)\.([a-z]{1,25})\.([a-z]{1,8})$/;
+       if(regex1.test(email.value)||regex2.test(email.value))
+       {
+         span[3].innerText="Your Email is Valid";
+         span[3].style.color="lime";  
+       }
+       else{
+           span[3].innerText="Invalid Email Id";
+           span[3].style.color="red";
+       }
+    }
+    pass.onkeydown=function()
+    {
+        const regnum= /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if(regnum.test(pass.value))
+        {
+          span[4].innerText="Strong Password";
+          span[4].style.color="lime";  
+        }
+        else
+        {
+           span[4].innerText="Enter a strong password";
+           span[4].style.color="red";
+        }   
+    }
+
+    cpass.onkeydown=function()
+    {
+        if(pass.value=cpass.value)
+        {
+          span[5].innerText="Password Matched";
+          span[5].style.color="lime";  
+        }
+        else
+        {
+           span[5].innerText="Entered password doesn't match with the password";
+           span[5].style.color="red";
+        }
+    }
+
+    $(".toggle-password").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    
+</script>

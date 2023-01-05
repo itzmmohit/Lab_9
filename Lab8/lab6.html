@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .btn {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div id="colors">
+        <span class="btn" style="background-color: red;"></span>
+        <span class="btn" style="background-color: gray;"></span>
+        <span class="btn" style="background-color: greenyellow;"></span>
+        <span class="btn" style="background-color: blue;"></span>
+        <span class="btn" style="background-color: #66f7ff;"></span>
+        <span class="btn" style="background-color: #ff00f5;"></span>
+        <span class="btn" style="background-color: #fefdff;"></span>
+        <span class="btn" style="background-color: #000000;"></span>
+        <span class="btn" style="background-color: rgba(0, 0, 0, 0.4);"></span>
+    </div>
+    <div align="center" style="margin-top: 150px; margin-left: 500px; margin-right: 500px; margin-bottom: 90px; padding-left: 30px; padding-right: 30px; padding-top: 30px; background-color: whitesmoke; height: 250px;">
+        <form>
+            <label for="name">Name&nbsp;&nbsp;:</label>
+            <input type="text" id="name"><br><br>
+            <label for="email">Email&nbsp;:</label>           
+            <input type="email" id="email"><br><br>
+            <label for="pass">Paswrd:</label>
+            <input type="password" id="pass"><br><br>
+            <input type="button" value="Set Cookie" onclick="setCookie()">
+            <input type="button" value="Get Cookie" onclick="getCookie()">
+            <input type="button" value="Delete Cookie" onclick="delCookie()">
+        </form>
+        <div style="display: flex;">
+            <div><p><button onclick="clickCounter()" type="button">Local Count</button></p></div>
+            <div id="result" style="padding-top: 16px;">&nbsp;Count</div>
+        </div>
+        <div style="display: flex;">
+            <p><button onclick="clickCounter1()" type="button">Session Count :</button></p>
+            <p id="demo">&nbsp;0</p>
+        </div> 
+    </div>
+    <script>
+        function setCookie (n, val,exdays) {
+            document.cookie = "name=" + document.getElementById("name").value;
+            document.cookie = "email=" + document.getElementById("email").value;
+            document.cookie = "pass=" + document.getElementById("pass").value;
+            cookie1=document.cookie;
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = n + "=" + val + "; " + expires;
+        };
+
+        var getCookie = function (n) {
+            if (document.cookie.length != 0)
+            {
+                alert("Name="+document.getElementById("name").value+" Email="+document.getElementById("email").value+" Password="+document.getElementById("pass").value);
+            }    
+            else
+            {
+                alert("Cookie not available");
+            }
+            var name = n + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        };
+
+        var delCookie = function (x){
+           setCookie("name","",-1);
+        }
+
+        document.onclick = function (e) {
+            if (e.target.className == 'btn') {
+                var favColor = e.target.style.backgroundColor;
+                setCookie('color', favColor,30);
+                document.body.style.backgroundColor = favColor;
+                console.log(favColor);
+            }
+        };
+
+        window.onload = function () {
+            var favColor = document.body.style.backgroundColor;
+            var color = getCookie('color');
+            if (color === '') {
+                document.body.style.backgroundColor = favColor;
+            } else {
+            document.body.style.backgroundColor = color;
+            }
+        };
+
+        function clickCounter() {
+        if (typeof(Storage) !== "undefined") {
+            if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+            } else {
+            localStorage.clickcount = 1;
+            }
+            document.getElementById("result").innerHTML = "&nbsp;You have clicked it " + localStorage.clickcount + " time(s).";
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+        }
+        }
+
+        function clickCounter1() {
+        if (sessionStorage.clickcount) {
+            sessionStorage.clickcount = Number(sessionStorage.clickcount) + 1;
+        } else {
+            sessionStorage.clickcount = 1;
+            }
+        document.getElementById("demo").innerHTML = sessionStorage.clickcount;
+        }
+    </script>
+</body>
+</html>
+

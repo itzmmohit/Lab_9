@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mail Login</title>
+</head>
+<style type="text/css">
+	label{
+		color: black;
+	}
+</style>
+<body style="background-image: url('User_bg.jpg'); background-size: 1800px ">
+	<div ng-controller="AboutController">
+        <ul>
+            <li ng-repeat="data in datas">
+             {{ data.title }} || {{data.orVal | currency:"$"}} || {{data.orVal | inrValue }}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

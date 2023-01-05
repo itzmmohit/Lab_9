@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+</head>
+<style type="text/css">
+	label{
+		color: black;
+	}
+	a.grw:hover, a.grw:active {
+		font-family: 'Courier New';
+    	font-size: 150%;      
+    }
+</style>
+<body>
+	<div ng-controller="HomeController" style="background-image: url('User_bg.jpg'); background-size: cover; height: 665px;">
+		<div style="padding-top: 200px;">
+			<a style="text-decoration: none;"><h4 style="color: skyblue;">Below is the message from the Controller</h4></a><br>
+			<a class="grw" style="text-decoration: none;"><h1 style="color: antiquewhite; ">{{ message }}</h1></a>
+		</div>
+	</div>
+</body>
+</html>

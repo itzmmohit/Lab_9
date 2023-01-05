@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All transactions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div ng-controller="MyController">
+        <section id="tableSection" class="container mt-5">
+            <table class="table table-striped">
+                <thead>
+                    <tr style="background-color: black;">
+                        <th scope="col" ng-click="setTrDate()">Upload Date &#8597;</th>
+                        <th scope="col" ng-click="setName()">Title &#8597;</th>
+                        <th scope="col" ng-click="setDob()">Video Date &#8597;</th>
+                        <th scope="col" ng-click="setGender()">Genre &#8597;</th>
+                        <th scope="col" ng-click="setCur()">Revenue &#8597;</th>
+                        <th scope="col" ng-click="setSt()">Online Status &#8597;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in datas | limitTo: limit | orderBy:order">
+                        <td scope="row">{{data.trDate | date:"dd/MM/yyyy"}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.date | date:"dd/MM/yyyy"}}</td>
+                        <td>{{data.gender | uppercase }}</td>
+                        <td>{{data.orVal | currency:"₹"}}</td>
+                        <td>{{data.orSt | lowercase }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+
+</html>

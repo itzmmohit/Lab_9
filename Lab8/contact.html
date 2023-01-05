@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+    <script src="app.js"></script>
+	<title>Search</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family:Arial, Helvetica, sans-serif ;
+        }
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px 2px 5px 2px;
+            text-align:center;
+            color: skyblue;
+        }
+        th {
+            cursor: pointer;
+            background-color: rgb(58, 75, 75);
+        }
+        h3{
+            margin-bottom: 5px;
+            text-align: center;
+            text-shadow: 2px 4px 9px;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="myApp" style="background-color: rgb(66, 63, 63); height: 665px;">
+        <h3 style="color: black;">Nirvana Database</h3>
+        <section>
+            <div ng-controller="ContactController">
+                <label style="color: black;">No of rows:</label><input type="number" ng-model="limit" min="1" max={{rowLimit}}>
+                <label style="color: black;">Search:</label><input type="search" ng-model="search" placeholder="Search Something"><br><br>
+                <table>
+                    <tr>
+                        <th ng-click="setVD()">Video Date &#8597;</th>
+                        <th ng-click="setTitle()">Title &#8597;</th>
+                        <th ng-click="setUpDate()">Upload Date &#8597;</th>
+                        <th ng-click="setAge()">On Air Time &#8597;</th>
+                        <th ng-click="setGenre()">Genre &#8597;</th>
+                        <th ng-click="setCur()">Incurred Value &#8597;</th>
+                        <th ng-click="setCur()">Value in INR &#8597;</th>
+                        <th ng-click="setSt()">Current Status &#8597;</th>
+                    </tr>
+                    <tr ng-repeat="data in datas | limitTo: limit | orderBy:order |filter:search">
+                        <td>{{data.video_date | date:"dd/MM/yyyy"}}</td>
+                        <td>{{data.title}}</td>
+                        <td>{{data.UpDate | date:"dd/MM/yyyy"}}</td>  
+                        <td>{{data.video_date | findAge}}</td>
+                        <td>{{data.genre | uppercase }}</td>
+                        <td>{{data.orVal | currency:"$"}}</td>
+                        <td>{{data.orVal | inrValue }}</td>
+                        <td>{{data.orSt | lowercase }}</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
